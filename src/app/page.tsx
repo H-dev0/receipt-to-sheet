@@ -78,6 +78,31 @@ export default function Home() {
     setReceipts((current) => current.map((row) => row.id === id ? { ...row, [field]: value } : row));
   }
 
+  function exportCsv() {
+    if (receipts.length === 0 || isLoading) return;
+
+    function escapeCell(value: string) {
+      // Treat formula-like receipt text as text when opened in a spreadsheet.
+      const safeValue = /^\s*[=+@-]/.test(value) ? `'${value}` : value;
+      return `"${safeValue.replaceAll('"', '""')}"`;
+    }
+
+    const lines = [
+      "merchant,date,total,VAT,category",
+      ...receipts.map((receipt) => COLUMNS.map((column) => escapeCell(receipt[column.key])).join(",")),
+    ];
+    // A UTF-8 BOM lets Excel recognize Arabic text on opening the CSV.
+    const blob = new Blob([`\uFEFF${lines.join("\r\n")}\r\n`], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "receipts.csv";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
   return (
     <main className="page-shell">
       <section className="hero" aria-labelledby="page-title">
@@ -123,7 +148,12 @@ export default function Home() {
               <p className="eyebrow">Review</p>
               <h2>Receipt details</h2>
             </div>
-            <button type="button" disabled>Export CSV</button>
+            <button
+              type="button"
+              className="export-button"
+              onClick={exportCsv}
+              disabled={receipts.length === 0 || isLoading}
+            >Export CSV</button>
           </div>
 
           <div className="table-wrap">

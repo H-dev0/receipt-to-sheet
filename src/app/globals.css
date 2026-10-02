@@ -123,6 +123,8 @@ td { padding: 0 28px; }
 .receipt-value:focus-visible { outline: 2px solid var(--leaf); outline-offset: 2px; }
 .delete-button { background: #fbefef; color: #a12d2d; cursor: pointer; }
 .delete-button:hover { background: #f7dede; }
+.export-button:not(:disabled) { background: var(--leaf); color: #fff; cursor: pointer; }
+.export-button:not(:disabled):hover { background: #174434; }
 
 .empty-state { min-height: 258px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--muted); text-align: center; }
 .empty-state span { display: grid; width: 44px; height: 44px; place-items: center; margin-bottom: 14px; border-radius: 14px; background: var(--leaf-soft); color: var(--leaf); font-size: 22px; }
