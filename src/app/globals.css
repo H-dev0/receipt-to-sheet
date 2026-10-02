@@ -96,7 +96,7 @@ h2 { margin-bottom: 8px; font-size: 20px; letter-spacing: -.025em; }
 .upload-button:hover { background: #174434; }
 .upload-button-disabled { opacity: .6; cursor: wait; pointer-events: none; }
 .feedback { margin: 16px 0 0 !important; font-size: 13px; font-weight: 700; }
-.feedback.error { color: #a12d2d; }
+.feedback.error { color: #a12d2d; white-space: pre-line; overflow-wrap: anywhere; }
 
 .table-card { overflow: hidden; }
 .table-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 28px 28px 18px; }
@@ -115,10 +115,14 @@ button {
 }
 
 .table-wrap { overflow-x: auto; border-top: 1px solid var(--line); }
-table { width: 100%; min-width: 600px; border-collapse: collapse; text-align: left; }
+table { width: 100%; min-width: 850px; border-collapse: collapse; text-align: left; }
 th { padding: 14px 28px; background: #fbfcfb; color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
 td { padding: 0 28px; }
 .result-row td { padding-top: 22px; padding-bottom: 22px; border-top: 1px solid var(--line); font-size: 14px; }
+.receipt-value { width: 100%; min-width: 100px; padding: 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); color: var(--ink); }
+.receipt-value:focus-visible { outline: 2px solid var(--leaf); outline-offset: 2px; }
+.delete-button { background: #fbefef; color: #a12d2d; cursor: pointer; }
+.delete-button:hover { background: #f7dede; }
 
 .empty-state { min-height: 258px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--muted); text-align: center; }
 .empty-state span { display: grid; width: 44px; height: 44px; place-items: center; margin-bottom: 14px; border-radius: 14px; background: var(--leaf-soft); color: var(--leaf); font-size: 22px; }
